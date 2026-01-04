@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RentTracker Pro - Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-icon {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .demo-box {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 10px;
+        }
+
+        .demo-box h3 {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .demo-btn {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .demo-btn:hover {
+            border-color: #667eea;
+        }
+
+        .demo-btn strong {
+            display: block;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .demo-btn small {
+            color: #666;
+            font-size: 12px;
+        }
+
+        .dashboard {
+            display: none;
+            background: #f0f0f0;
+            min-height: 100vh;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        .dashboard.show {
+            display: block;
+        }
+
+        .topbar {
+            background: white;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topbar h2 {
+            color: #333;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logout-btn {
+            padding: 10px 20px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .container {
+            padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .stat-card h3 {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .stat-card .value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #f5f5f5;
+            font-weight: bold;
+        }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .badge-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge-warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge-danger {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="login-box">
+        <div class="logo">
+            <div class="logo-icon">🏢</div>
+            <h1>RentTracker Pro</h1>
+            <p>Property Management System</p>
+        </div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="email" required placeholder="Enter your email">
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="password" required placeholder="Enter your password">
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <div class="demo-box">
+            <h3>Quick Login</h3>
+            
+            <div class="demo-btn" onclick="loginAsAdmin()">
+                <strong>👨‍💼 Admin Account</strong>
+                <small>admin@renttracker.com / admin123</small>
+            </div>
+
+            <div class="demo-btn" onclick="loginAsRenter()">
+                <strong>🏠 Renter Account</strong>
+                <small>renter@renttracker.com / renter123</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="dashboard">
+        <div class="topbar">
+            <h2 id="dashboardTitle">Dashboard</h2>
+            <div class="user-info">
+                <div>
+                    <strong id="userName">User</strong><br>
+                    <small id="userRole">Role</small>
+                </div>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="stats">
+                <div class="stat-card">
+                    <h3>Total Properties</h3>
+                    <div class="value" id="totalProperties">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Active Tenants</h3>
+                    <div class="value" id="totalTenants">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Monthly Revenue</h3>
+                    <div class="value" id="monthlyRevenue">₹0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Pending Maintenance</h3>
+                    <div class="value" id="pendingMaintenance">0</div>
+                </div>
+            </div>
+
+            <div class="card" id="propertiesCard">
+                <h3>Properties</h3>
+                <table id="propertiesTable">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Address</th>
+                            <th>Rent</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div class="card" id="paymentsCard">
+                <h3>Recent Payments</h3>
+                <table id="paymentsTable">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Tenant</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple data storage
+        let currentUser = null;
+
+        // Initialize data
+        function initData() {
+            if (!localStorage.getItem('initialized')) {
+                // Users
+                localStorage.setItem('users', JSON.stringify([
+                    {
+                        id: '1',
+                        name: 'Admin User',
+                        email: 'admin@renttracker.com',
+                        password: 'admin123',
+                        role: 'admin'
+                    },
+                    {
+                        id: '2',
+                        name: 'Rajesh Kumar',
+                        email: 'renter@renttracker.com',
+                        password: 'renter123',
+                        role: 'renter'
+                    }
+                ]));
+
+                // Properties
+                localStorage.setItem('properties', JSON.stringify([
+                    {
+                        id: '1',
+                        name: 'Sunset Apartments 101',
+                        type: 'Apartment',
+                        address: '123 Main St, Mumbai',
+                        rent: 25000,
+                        status: 'occupied'
+                    },
+                    {
+                        id: '2',
+                        name: 'Green Valley House',
+                        type: 'House',
+                        address: '456 Park Ave, Delhi',
+                        rent: 45000,
+                        status: 'vacant'
+                    },
+                    {
+                        id: '3',
+                        name: 'Downtown Condo',
+                        type: 'Condo',
+                        address: '789 Business St, Bangalore',
+                        rent: 35000,
+                        status: 'vacant'
+                    }
+                ]));
+
+                // Tenants
+                localStorage.setItem('tenants', JSON.stringify([
+                    {
+                        id: '1',
+                        name: 'Rajesh Kumar',
+                        email: 'renter@renttracker.com',
+                        propertyId: '1'
+                    }
+                ]));
+
+                // Payments
+                localStorage.setItem('payments', JSON.stringify([
+                    {
+                        id: '1',
+                        tenantId: '1',
+                        amount: 25000,
+                        date: '2024-12-01',
+                        status: 'paid'
+                    },
+                    {
+                        id: '2',
+                        tenantId: '1',
+                        amount: 25000,
+                        date: '2024-11-01',
+                        status: 'paid'
+                    },
+                    {
+                        id: '3',
+                        tenantId: '1',
+                        amount: 25000,
+                        date: '2024-10-01',
+                        status: 'paid'
+                    }
+                ]));
+
+                localStorage.setItem('initialized', 'true');
+            }
+        }
+
+        // Quick login functions
+        function loginAsAdmin() {
+            document.getElementById('email').value = 'admin@renttracker.com';
+            document.getElementById('password').value = 'admin123';
+            document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+        }
+
+        function loginAsRenter() {
+            document.getElementById('email').value = 'renter@renttracker.com';
+            document.getElementById('password').value = 'renter123';
+            document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+        }
+
+        // Login form handler
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (user) {
+                currentUser = user;
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                showDashboard();
+            } else {
+                alert('Invalid email or password!');
+            }
+        });
+
+        // Show dashboard
+        function showDashboard() {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('dashboard').classList.add('show');
+
+            document.getElementById('userName').textContent = currentUser.name;
+            document.getElementById('userRole').textContent = currentUser.role.toUpperCase();
+
+            loadDashboard();
+        }
+
+        // Logout
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            document.getElementById('loginPage').style.display = 'block';
+            document.getElementById('dashboard').classList.remove('show');
+            document.getElementById('loginForm').reset();
+        }
+
+        // Load dashboard data
+        function loadDashboard() {
+            const properties = JSON.parse(localStorage.getItem('properties') || '[]');
+            const tenants = JSON.parse(localStorage.getItem('tenants') || '[]');
+            const payments = JSON.parse(localStorage.getItem('payments') || '[]');
+
+            // Stats
+            document.getElementById('totalProperties').textContent = properties.length;
+            document.getElementById('totalTenants').textContent = tenants.length;
+            
+            const totalRevenue = payments
+                .filter(p => p.status === 'paid')
+                .reduce((sum, p) => sum + p.amount, 0);
+            document.getElementById('monthlyRevenue').textContent = '₹' + totalRevenue.toLocaleString('en-IN');
+            document.getElementById('pendingMaintenance').textContent = '0';
+
+            // Properties table
+            const propertiesBody = document.querySelector('#propertiesTable tbody');
+            propertiesBody.innerHTML = properties.map(p => `
+                <tr>
+                    <td><strong>${p.name}</strong></td>
+                    <td>${p.type}</td>
+                    <td>${p.address}</td>
+                    <td><strong>₹${p.rent.toLocaleString('en-IN')}</strong></td>
+                    <td><span class="badge badge-${p.status === 'occupied' ? 'success' : 'warning'}">${p.status.toUpperCase()}</span></td>
+                </tr>
+            `).join('');
+
+            // Payments table
+            const paymentsBody = document.querySelector('#paymentsTable tbody');
+            paymentsBody.innerHTML = payments.map(p => {
+                const tenant = tenants.find(t => t.id === p.tenantId);
+                return `
+                    <tr>
+                        <td>${p.date}</td>
+                        <td>${tenant ? tenant.name : 'Unknown'}</td>
+                        <td><strong>₹${p.amount.toLocaleString('en-IN')}</strong></td>
+                        <td><span class="badge badge-${p.status === 'paid' ? 'success' : 'warning'}">${p.status.toUpperCase()}</span></td>
+                    </tr>
+                `;
+            }).join('');
+
+            // Hide properties for renter
+            if (currentUser.role === 'renter') {
+                document.getElementById('propertiesCard').style.display = 'none';
+            }
+        }
+
+        // Initialize on page load
+        initData();
+
+        // Check for saved session
+        const savedUser = localStorage.getItem('currentUser');
+        if (savedUser) {
+            currentUser = JSON.parse(savedUser);
+            showDashboard();
+        }
+    </script>
+</body>
+</html>
